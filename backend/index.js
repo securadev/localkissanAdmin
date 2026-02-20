@@ -4,7 +4,10 @@ const bodyParser = require("body-parser");
 const productRoutes = require("./routes/product.Routes");
 const authRoutes=require("./routes/auth.routes");
 const mongoose = require("mongoose");
+const cors = require("cors");  
 const app = express();
+
+app.use(cors());
 
 app.use(bodyParser.json());
 
