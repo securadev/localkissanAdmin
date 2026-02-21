@@ -1,0 +1,40 @@
+<div class="admin-wrapper">
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="logo">
+      🌾 LocalKissan
+    </div>
+
+    <div class="nav-right">
+      <span class="user">Admin</span>
+      <button class="logout-btn" (click)="logout()">Logout</button>
+    </div>
+  </header>
+
+  <div class="admin-body">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <ul>
+        <li routerLink="/admin/dashboard" routerLinkActive="active">Dashboard</li>
+        <li routerLink="/admin/products" routerLinkActive="active">Products</li>
+        <li>Farmers</li>
+        <li>Orders</li>
+        <li>Reports</li>
+      </ul>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="content">
+      <router-outlet></router-outlet>
+    </main>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    © 2026 LocalKissan | Smart Agriculture Dashboard
+  </footer>
+
+</div>

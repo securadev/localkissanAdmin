@@ -1,0 +1,122 @@
+<div id="addProducts" *ngIf="!showTable">
+<h2 class="page-title">🌾 Add Product</h2>
+
+<div class="form-wrapper">
+
+  <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+
+    <div class="form-grid">
+
+      <!-- Name -->
+      <div class="form-group">
+        <label>Product Name</label>
+        <input type="text" formControlName="name" placeholder="Enter product name">
+      </div>
+
+      <!-- Price -->
+      <div class="form-group">
+        <label>Price ($)</label>
+        <input type="number" formControlName="price" placeholder="Enter price">
+      </div>
+
+      <!-- Image -->
+      <div class="form-group full-width">
+        <label>Image URL</label>
+        <input type="text" formControlName="image" placeholder="Paste image URL">
+      </div>
+
+      <!-- Description -->
+      <div class="form-group full-width">
+        <label>Description</label>
+        <textarea formControlName="description" rows="3"
+          placeholder="Enter product description"></textarea>
+      </div>
+
+      <!-- Status -->
+      <div class="form-group toggle-group">
+        <label>Status</label>
+        <label class="switch">
+          <input type="checkbox" formControlName="isActive">
+          <span class="slider"></span>
+        </label>
+      </div>
+
+    </div>
+
+    <button type="submit" class="save-btn">
+      Save Product
+    </button>
+
+     <button class="save-btn" (click)="toggleTable(true)">
+      Cancel
+    </button>
+
+  </form>
+
+</div>
+</div>
+
+
+<div id="showProducts" *ngIf="showTable">
+<h2 class="page-title">🌾 Products Management</h2>
+<button (click)="toggleTable(false)">Add Products</button>
+
+<div class="table-wrapper">
+
+  <table class="modern-table">
+
+    <thead>
+      <tr>
+        <th>Image</th>
+        <th>Name</th>
+        <th>Price ($)</th>
+        <th>Description</th>
+        <th>Status</th>
+        <th>Created</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let product of products">
+
+        <td>
+          <img
+            [src]="product.image || 'https://via.placeholder.com/60'"
+            class="product-img"
+          />
+        </td>
+
+        <td>{{ product.name }}</td>
+
+        <td class="price">${{ product.price }}</td>
+
+        <td class="desc">
+          {{ product.description || 'No description' }}
+        </td>
+
+        <td>
+          <span
+            class="status"
+            [ngClass]="product.isActive ? 'active' : 'inactive'"
+          >
+            {{ product.isActive ? 'Active' : 'Inactive' }}
+          </span>
+        </td>
+
+        <td>
+          {{ product.createdAt | date:'mediumDate' }}
+        </td>
+
+        <td>
+          <button class="edit-btn" (click)="editProduct(product)">Edit</button>
+          <button class="delete-btn" (click)="deleteProduct(product._id)">Delete</button>
+        </td>
+
+      </tr>
+    </tbody>
+
+  </table>
+
+</div>
+</div>
